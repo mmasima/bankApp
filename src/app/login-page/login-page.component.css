@@ -1,0 +1,16 @@
+.incorrect {
+  color: red;
+  text-align: center;
+}
+.login{
+  margin-top: 5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 400px;
+}
+h2{
+  text-align: center;
+}
+.button{
+  text-align: center;
+}
