@@ -55,8 +55,20 @@ export class DepositComponent implements OnInit {
     submit() {
     this.token = sessionStorage.getItem('token');
     this.data.overdraft = parseFloat(this.overview.overdraft);
-    this.data.balance = parseFloat(this.deposit.toString()) + parseFloat(this.overview.balance);
-
+    this.data.balance = parseFloat(this.overview.balance);
+    if (this.data.overdraft > this.data.balance) {
+      this.data.overdraft = this.data.overdraft - parseFloat(this.deposit.toString());
+      console.log( 'new overdraft' + this.data.overdraft);
+    }
+    if (this.deposit > this.data.overdraft) {
+      this.data.balance =  this.deposit - this.data.overdraft;
+      this.data.overdraft = 0;
+      console.log('new balance' + this.data.balance);
+    }
+    if (this.data.balance === this.data.overdraft) {
+      this.data.balance = 0;
+      this.data.overdraft = 0;
+    }
     this.http.put('https://momentum-retail-practical-test.firebaseio.com/accounts/' + this.account + '.json?auth=' + this.token, this.data)
       .subscribe ((update) => {
       this.hasError = false;

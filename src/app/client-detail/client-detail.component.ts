@@ -8,13 +8,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./client-detail.component.css']
 })
 export class ClientDetailComponent implements OnInit {
-
   Id: string;
   token: string;
   apiUrl = 'https://momentum-retail-practical-test.firebaseio.com/clients/';
+  apiUrl2 = 'https://momentum-retail-practical-test.firebaseio.com/accounts/';
   response: any;
   account: any;
   overview: any;
+  put: any;
+  data = {
+    balance : 0,
+    overdraft : 0
+  };
 
   constructor(public route: Router, private http: HttpClient) { }
   ngOnInit(): void {
@@ -40,6 +45,13 @@ export class ClientDetailComponent implements OnInit {
     .subscribe((overview) => {
       this.overview = overview;
       console.log(this.overview);
+      if (this.overview === null) {
+        this.http.put(this.apiUrl2 + this.account + '.json?auth=' + this.token, this.data)
+        .subscribe((put) => {
+          this.put = put;
+          console.log(this.put);
+        });
+      }
     });
   }
 }

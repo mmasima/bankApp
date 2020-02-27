@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
-<div class="form-group p-5 align">
- <h4>create a new account</h4>
-  <input type="number" class="form-control" [(ngModel)]="accountNbr">
-  <br>
-  <button type="submit" class="btn btn-primary" (click)=create()>create account</button>
-</div>
-<div *ngIf="add" class="align">
-  <h4>account has been added successfully!</h4>
+<div class="account-div mx-auto">
+  <div class="form-group p-5 align">
+   <h4>create a new account</h4>
+    <input type="number" class="form-control" [(ngModel)]="accountNbr">
+    <br>
+    <button type="submit" class="btn btn-primary" (click)=create()>create account</button>
+  </div>
+  <div *ngIf="ans" class="align">
+    <h4>account has been added successfully!</h4>
+  </div>
 </div>

@@ -1,24 +1,24 @@
 <app-navbar></app-navbar>
-<div class="container p-5"></div>
+<div class="container">
+  <div class="card-body account-div mx-auto">
     <h2>select account</h2>
-  <div class="card-body">
-    <div class="card-title">
-      <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
-    <option *ngFor="let data of response.accounts" [value]="data">{{ data }}</option>
-    </select>
-    <br/>
-  </div>
+      <div class="card-title">
+        <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
+      <option *ngFor="let data of response.accounts" [value]="data">{{ data }}</option>
+      </select>
+      <br/>
+    </div>
+    <div class="button">
+      <button type="button" class="btn btn-primary mb-3" (click)="show()">show details</button>
+      <div *ngIf="overview" class="p-1">
+        <div class="card p-2 mb-2">
+          balance : {{ overview.balance }}
+        </div>
+        <div class="card p-2">
+          overdraft : {{ overview.overdraft }}
+        </div>
+    </div>
 </div>
-<div class="button">
-  <button type="button" class="btn btn-primary" (click)="show()">show details</button>
 </div>
-<br>
-<div *ngIf="overview" class="p-1">
-  <div class="card p-2">
-    balance : {{ overview.balance }}
-  </div>
-  <div class="card p-2">
-    overdraft : {{ overview.overdraft }}
-  </div>
 </div>
 

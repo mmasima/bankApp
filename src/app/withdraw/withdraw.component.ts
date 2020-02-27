@@ -53,8 +53,15 @@ export class WithdrawComponent implements OnInit {
     submit() {
     this.token = sessionStorage.getItem('token');
     this.data.overdraft = parseFloat(this.overview.overdraft);
-    this.data.balance =parseFloat(this.overview.balance) - parseFloat(this.withdraw.toString());
-
+    if ((parseFloat(this.withdraw.toString()) > (parseFloat(this.overview.balance)))) {
+      this.withdraw = parseFloat(this.withdraw.toString()) - parseFloat(this.overview.balance);
+      console.log(this.data.overdraft);
+      this.data.overdraft = parseFloat(this.withdraw.toString());
+      this.data.balance = 0;
+      console.log(this.data.overdraft);
+    } else {
+      this.data.balance = parseFloat(this.overview.balance) - parseFloat(this.withdraw.toString());
+    }
     this.http.put('https://momentum-retail-practical-test.firebaseio.com/accounts/' + this.account + '.json?auth=' + this.token, this.data)
       .subscribe ((update) => {
       this.hasError = false;
