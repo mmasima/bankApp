@@ -4,7 +4,7 @@
     <h2>select account</h2>
       <div class="card-title">
         <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
-      <option *ngFor="let data of response.accounts" [value]="data">{{ data }}</option>
+      <option *ngFor="let data of response?.accounts" [value]="data">{{ data }}</option>
       </select>
       <br/>
     </div>

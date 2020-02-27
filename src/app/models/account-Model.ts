@@ -1,3 +1,3 @@
 export interface Accounts {
-    name: string;
+    accounts: string[];
 }

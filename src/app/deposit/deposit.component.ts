@@ -21,8 +21,6 @@ export class DepositComponent implements OnInit {
   overview: any;
   newBalance: number;
   update: any;
-
-
   data = {
     balance: 0,
     overdraft: 0

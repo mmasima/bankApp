@@ -28,11 +28,13 @@ export class OpenAccountComponent implements OnInit {
   constructor(public route: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
+
   }
 
   create() {
     this.Id = sessionStorage.getItem('localId');
     this.token = sessionStorage.getItem('token');
+    this.accountNbr = Math.floor(Math.random() * 10000000);
     this.http.get(this.ApiUrl2 + this.Id + '/accounts' + '.json?auth=' + this.token)
       .subscribe((response) => {
         this.response = response;
