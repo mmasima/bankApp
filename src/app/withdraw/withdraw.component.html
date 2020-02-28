@@ -18,16 +18,16 @@
   </div>
   <br>
   <div class="align">
-    <button type="button" class="btn btn-success" (click)="submit()">withdraw</button>
+    <button type="button" class="btn btn-dark" (click)="submit()">withdraw</button>
   </div>
   <br>
   <div *ngIf="update">
     <h4 class="corner">new balance</h4>
-    <div class="card">
-      {{ update.balance }}
+    <div class="card  mb-2 p-1">
+      <b>balance : {{ update.balance }} </b>
     </div>
-    <div class="card">
-      {{ update.overdraft }}
+    <div class="card  p-1">
+      <b>overdraft : {{ update.overdraft }} </b>
     </div>
   </div>
   </div>

@@ -9,11 +9,15 @@
   margin-bottom: 5%;
   min-width: 300px;
 }
+.firstRow {
+  border-right: 2px solid black;
+}
 @media only screen and (max-width: 900px) {
  .account-div {
     width: 50%;
-    margin-top: 45%;
+    margin-top: 25%;
     margin-bottom: 25%;
     min-width: 300px;
   }
  }
+

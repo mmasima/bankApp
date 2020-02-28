@@ -54,6 +54,7 @@ export class OpenAccountComponent implements OnInit {
         this.http.put(this.ApiUrl2 + this.Id + '/accounts' + '.json?auth=' + this.token, this.response)
         .subscribe((ans) => {
           this.ans = ans;
+          console.log(this.ans);
          });
       });
     }

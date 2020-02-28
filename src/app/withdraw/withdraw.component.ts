@@ -19,15 +19,11 @@ export class WithdrawComponent implements OnInit {
   overview: any;
   newBalance: number;
   update: any;
-
-
   data = {
     balance: 0,
     overdraft: 0
    };
-
   constructor(public route: Router, private http: HttpClient) { }
-
 
   ngOnInit(): void {
     this.Id = sessionStorage.getItem('localId');
@@ -47,20 +43,24 @@ export class WithdrawComponent implements OnInit {
     .subscribe((overview) => {
       this.overview = overview;
       console.log(this.overview);
-      console.log(account);
+      console.log(this.overview);
       });
     }
     submit() {
     this.token = sessionStorage.getItem('token');
     this.data.overdraft = parseFloat(this.overview.overdraft);
-    if ((parseFloat(this.withdraw.toString()) > (parseFloat(this.overview.balance)))) {
+    this.data.balance = parseFloat(this.overview.balance);
+
+    if (parseFloat(this.withdraw.toString()) > this.data.balance && this.data.balance !== 0) {
       this.withdraw = parseFloat(this.withdraw.toString()) - parseFloat(this.overview.balance);
       console.log(this.data.overdraft);
       this.data.overdraft = parseFloat(this.withdraw.toString());
       this.data.balance = 0;
       console.log(this.data.overdraft);
-    } else {
-      this.data.balance = parseFloat(this.overview.balance) - parseFloat(this.withdraw.toString());
+    } else if (this.data.balance === 0) {
+      this.data.overdraft = parseFloat(this.overview.overdraft) + parseFloat(this.withdraw.toString());
+    } else if (this.data.balance > this.data.overdraft) {
+      this.data.balance = this.data.balance - parseFloat(this.withdraw.toString());
     }
     this.http.put('https://momentum-retail-practical-test.firebaseio.com/accounts/' + this.account + '.json?auth=' + this.token, this.data)
       .subscribe ((update) => {
