@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginPageComponent } from './login-page';
 import { HomepageComponent } from './homepage';
-import { AuthGuard as AuthGuard } from './auth/auth.guard';
+import { AuthGuard as AuthGuard } from './auth/authGuard/auth.guard';
 import { DepositComponent } from './deposit';
 import { ClientDetailComponent } from './client-detail';
 

@@ -12,7 +12,6 @@ import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { OpenAccountComponent } from './open-account/open-account.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
-import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
