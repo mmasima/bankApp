@@ -1,17 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HomepageComponent } from './homepage/homepage.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { ClientDetailComponent } from './client-detail/client-detail.component';
-import { DepositComponent } from './deposit/deposit.component';
-import { OpenAccountComponent } from './open-account/open-account.component';
-import { WithdrawComponent } from './withdraw/withdraw.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+import { HomepageComponent } from './view/homepage/homepage.component';
+import { NavbarComponent } from './view/navbar/navbar.component';
+import { ClientDetailComponent } from './view/client-detail/client-detail.component';
+import { DepositComponent } from './view/deposit/deposit.component';
+import { OpenAccountComponent } from './view/open-account/open-account.component';
+import { WithdrawComponent } from './view/withdraw/withdraw.component';
+import { LoginPageComponent } from './view/login-page/login-page.component';
 
 @NgModule({
   declarations: [

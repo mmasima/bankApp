@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { OverallService } from '../../config/auth/service/overall.service';
+import { ErrorModel } from '../../config/models/error-model';
+
 
 @Component({
   selector: 'app-withdraw',
@@ -8,46 +10,45 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./withdraw.component.css']
 })
 export class WithdrawComponent implements OnInit {
+  isDisabled: boolean;
   account: number;
   withdraw: number;
   overdraft: number;
-  token: string;
   response: any;
   hasError: boolean;
-  Id: string;
-  apiUrl = 'https://momentum-retail-practical-test.firebaseio.com/clients/';
+  error: ErrorModel;
   overview: any;
-  newBalance: number;
   update: any;
   data = {
     balance: 0,
     overdraft: 0
    };
-  constructor(public route: Router, private http: HttpClient) { }
+  constructor(public route: Router, private auth: OverallService) { }
 
   ngOnInit(): void {
-    this.Id = sessionStorage.getItem('localId');
-    this.token = sessionStorage.getItem('token');
-    console.log(this.token);
-
-    this.http.get(this.apiUrl + this.Id + '.json?auth=' + this.token)
-      .subscribe((response) => {
+    this.isDisabled = true;
+    this.auth.getAccounts().subscribe((response) => {
       this.response = response;
-      console.log(this.response);
-      });
-    }
-    // getting the balance
+    }, (error) => {
+      this.hasError = true;
+      this.error = error;
+      console.log(this.hasError);
+    });
+  }
     displayAccount(account: any) {
-      this.token = sessionStorage.getItem('token');
-      this.http.get('https://momentum-retail-practical-test.firebaseio.com/accounts/' + this.account + '.json?auth=' + this.token)
-    .subscribe((overview) => {
-      this.overview = overview;
-      console.log(this.overview);
-      console.log(this.overview);
+      this.account = account;
+      this.auth.accountDetails(account)
+      .subscribe((overview) => {
+        this.overview = overview;
       });
     }
     submit() {
-    this.token = sessionStorage.getItem('token');
+    if (this.withdraw === undefined) {
+      this.hasError = true;
+      return;
+    }
+    this.isDisabled = false;
+    this.hasError = false;
     this.data.overdraft = parseFloat(this.overview.overdraft);
     this.data.balance = parseFloat(this.overview.balance);
 
@@ -62,11 +63,16 @@ export class WithdrawComponent implements OnInit {
     } else if (this.data.balance > this.data.overdraft) {
       this.data.balance = this.data.balance - parseFloat(this.withdraw.toString());
     }
-    this.http.put('https://momentum-retail-practical-test.firebaseio.com/accounts/' + this.account + '.json?auth=' + this.token, this.data)
-      .subscribe ((update) => {
-      this.hasError = false;
-      this.update = update;
-      console.log(this.update);
-      });
+    this.auth.depositMoney(this.account, this.data.balance, this.data.overdraft)
+    .subscribe((update) => {
+        this.update = update;
+    }, (error) => {
+      this.hasError = true;
+      this.error = error;
+      console.log(this.error);
+    });
+  }
+    refresh() {
+      location.reload();
     }
   }

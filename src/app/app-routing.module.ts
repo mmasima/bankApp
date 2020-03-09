@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginPageComponent } from './login-page';
-import { HomepageComponent } from './homepage';
-import { AuthGuard as AuthGuard } from './auth/authGuard/auth.guard';
-import { DepositComponent } from './deposit';
-import { ClientDetailComponent } from './client-detail';
+import { LoginPageComponent } from './view/login-page';
+import { HomepageComponent } from './view/homepage';
+import { AuthGuard as AuthGuard } from './config/auth/authGuard/auth.guard';
+import { DepositComponent } from './view/deposit';
+import { ClientDetailComponent } from './view/client-detail';
 
-import { OpenAccountComponent } from './open-account';
-import { WithdrawComponent } from './withdraw/withdraw.component';
+import { OpenAccountComponent } from './view/open-account';
+import { WithdrawComponent } from './view/withdraw/withdraw.component';
 
 const routes: Routes = [
   {path: '', component: LoginPageComponent},

@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="account-div mx-auto" *ngIf="isDisabled">
+  <div class="form-group p-5 align">
+   <h4 class="p-2">create a new account</h4>
+    <button type="submit" class="btn btn-dark" (click)=create()>create account</button>
+  </div>
+</div>
+  <div *ngIf="!isDisabled" class="align account-div mx-auto">
+    <h4><strong>new account created successfully!</strong></h4>
+    <div *ngIf="put" class="p-1">
+      <div class="card p-2 mb-2">
+        new account nbr : {{ this.accountNbr }}
+      </div>
+      <div class="card p-2 mb-2">
+        balance : {{ this.data.balance }}
+      </div>
+      <div class="card p-2">
+        overdraft : {{ this.data.overdraft }}
+      </div>
+      <div class="align p-2 m-2">
+        <button type="button" class="btn btn-dark" (click)="refresh()">open another account</button>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+
+<div class="container p-2 account-div mx-auto" *ngIf="isDisabled">
+    <h2 class="align">select account</h2>
+      <div class="card-body">
+        <div class="card-title">
+          <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
+        <option *ngFor="let data of response?.accounts" [value]="data">{{ data }}</option>
+        </select>
+        <br/>
+      </div>
+    <div class="p-1">
+      <h4 class="align">withdraw</h4>
+      <br>
+      <div class="row">
+        <div class="col">
+          <input type="number" class="form-control mb-2" [(ngModel)]="withdraw">
+        </div>
+      </div>
+      <div class="align">
+        <button type="button" class="btn btn-dark" (click)="submit()">withdraw</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div></div>
+<div *ngIf ="!isDisabled" class="p-2 account-div mx-auto">
+  <h4 class="align">new balance</h4>
+    <div class="card  mb-3 p-3">
+      <b>account : {{ this.account }} </b>
+    </div>
+    <div class="card  mb-3 p-3">
+      <b>balance : {{ this.data?.balance }} </b>
+    </div>
+    <div class="card   mb-3 p-3">
+      <b>overdraft : {{ this.data?.overdraft }} </b>
+    </div>
+    <div class="align">
+      <button type="button" class="btn btn-dark" (click)="refresh()">make another withdrawal</button>
+    </div>
+</div>
+<div class="align" *ngIf="hasError">
+  <h4><strong>There are some fields missing!</strong></h4>
+</div>

@@ -1,6 +1,6 @@
 export interface ErrorModel {
   error: {
-    cod: string;
+    code: string;
     message: string;
   };
 }

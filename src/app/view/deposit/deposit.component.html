@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<div class="container account-div mx-auto" *ngIf="isDisabled">
+    <h2 class="align">select account</h2>
+      <div class="card-body">
+        <div class="card-title">
+          <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
+        <option *ngFor="let data of response?.accounts" [value]="data">{{ data }}</option>
+        </select>
+        <br/>
+      </div>
+      <div class="">
+        <h4 class="align">deposit</h4>
+        <br>
+        <div class="row">
+          <div class="col">
+            <input type="text" class="form-control p-1" [(ngModel)]="deposit" required="required">
+          </div>
+        </div>
+        <br>
+        <div class="align">
+          <button type="button" class="btn btn-dark" (click)="submit()">deposit</button>
+        </div>
+        <br>
+      </div>
+    </div>
+    </div>
+  <div>
+  <div *ngIf="!isDisabled" class="container account-div mx-auto">
+    <h4 class="align">new balance</h4>
+    <div class="card mb-5 p-1">
+      <b>account :  {{ this.account }}</b>
+    </div>
+    <div class="card mb-5 p-1">
+      <b>balance : {{ this.data?.balance}}</b>
+    </div>
+    <div class="card mb-5 p-1">
+      <b>overdraft :  {{ this.data?.overdraft }}</b>
+    </div>
+    <div class="align p-2 m-2">
+      <button type="button" class="btn btn-dark" (click)="refresh()">make another deposit</button>
+    </div>
+  </div>
+  <div class="align" *ngIf="hasError">
+    <h4><strong>there are some fields missing!</strong></h4>
+  </div>
