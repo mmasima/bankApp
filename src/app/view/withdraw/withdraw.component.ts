@@ -43,7 +43,7 @@ export class WithdrawComponent implements OnInit {
       });
     }
     submit() {
-    if (this.withdraw === undefined) {
+    if (this.withdraw === undefined || this.account === undefined) {
       this.hasError = true;
       return;
     }
@@ -54,10 +54,8 @@ export class WithdrawComponent implements OnInit {
 
     if (parseFloat(this.withdraw.toString()) > this.data.balance && this.data.balance !== 0) {
       this.withdraw = parseFloat(this.withdraw.toString()) - parseFloat(this.overview.balance);
-      console.log(this.data.overdraft);
       this.data.overdraft = parseFloat(this.withdraw.toString());
       this.data.balance = 0;
-      console.log(this.data.overdraft);
     } else if (this.data.balance === 0) {
       this.data.overdraft = parseFloat(this.overview.overdraft) + parseFloat(this.withdraw.toString());
     } else if (this.data.balance > this.data.overdraft) {

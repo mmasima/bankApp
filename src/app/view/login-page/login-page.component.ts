@@ -15,7 +15,6 @@ export class LoginPageComponent implements OnInit {
   response: any;
   hasError: boolean;
   please: any;
-  error: ErrorModel;
 
   data = {
     email: '',
@@ -23,18 +22,22 @@ export class LoginPageComponent implements OnInit {
     returnSecureToken: true
    };
   constructor(public route: Router, private service: AuthService ) { }
-
-
+  error: ErrorModel;
   ngOnInit(): void {
   }
   submit() {
+    if (this.email === undefined || this.password === undefined) {
+      this.hasError = true;
+      location.reload();
+      return;
+    }
     this.hasError = false;
     this.service.getToken(this.email, this.password)
     .subscribe((data) => {
       this.please = data;
     }, (error) => {
          this.hasError = true;
-         this.error = error;
+         this.error = error.error.error.errors[0].message;
       });
   }
 }

@@ -40,7 +40,7 @@ export class DepositComponent implements OnInit {
       });
     }
      submit() {
-    if (this.deposit === undefined) {
+    if (this.deposit === undefined || this.account === undefined) {
       this.hasError = true;
       return;
     }

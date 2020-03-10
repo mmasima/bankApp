@@ -31,7 +31,12 @@ export class ClientDetailComponent implements OnInit {
      this.account = account;
   }
   show() {
+    if (this.account === undefined) {
+      this.hasError = true;
+      return;
+    }
     // displaying account details to user
+    this.hasError = false;
     this.auth.accountDetails(this.account).subscribe((overview) => {
       this.overview = overview;
       if (this.overview === null) {

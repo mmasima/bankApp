@@ -15,6 +15,6 @@
     </div>
   </form>
   <div *ngIf="hasError" class="incorrect">
-    <h4>username or password is incorrect!</h4>
+    <h4>{{ this.error }}!</h4>
   </div>
 </div>
