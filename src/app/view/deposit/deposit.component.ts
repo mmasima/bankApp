@@ -50,12 +50,15 @@ export class DepositComponent implements OnInit {
     this.data.balance = parseFloat(this.overview.balance);
     if (parseFloat(this.deposit.toString()) > this.data.overdraft && this.data.overdraft !== 0) {
       this.deposit = parseFloat(this.deposit.toString()) - this.data.overdraft;
-      this.data.balance = parseFloat(this.deposit.toString());
+      this.data.balance = parseFloat(this.deposit.toString()) + this.data.balance;
       this.data.overdraft = 0;
     } else if (this.data.overdraft === 0) {
       this.data.balance = this.data.balance + parseFloat(this.deposit.toString());
     } else if (this.data.overdraft > this.data.balance) {
       this.data.overdraft = this.data.overdraft - parseFloat(this.deposit.toString());
+    } else if (this.data.overdraft > 0) {
+      this.data.overdraft = this.data.overdraft - parseFloat(this.deposit.toString());
+      console.log(this.data.overdraft);
     }
     this.auth.depositMoney(this.account, this.data.balance, this.data.overdraft)
     .subscribe((update) => {

@@ -10,6 +10,7 @@ import { ErrorModel } from '../../config/models/error-model';
   styleUrls: ['./client-detail.component.css']
 })
 export class ClientDetailComponent implements OnInit {
+  loading = false;
   response: any;
   checker: any;
   account: any;
@@ -31,20 +32,25 @@ export class ClientDetailComponent implements OnInit {
      this.account = account;
   }
   show() {
+    this.loading = true;
     if (this.account === undefined) {
+      this.loading = false;
       this.hasError = true;
       return;
     }
     // displaying account details to user
     this.hasError = false;
     this.auth.accountDetails(this.account).subscribe((overview) => {
+      this.loading = false;
       this.overview = overview;
       if (this.overview === null) {
         this.auth.depositMoney(this.account , this.data.balance, this.data.overdraft).subscribe((checker) => {
+          this.loading = false;
           this.checker = checker;
         });
       }
     }, (error) => {
+      this.loading = false;
       this.hasError = true;
       this.error = error;
       }

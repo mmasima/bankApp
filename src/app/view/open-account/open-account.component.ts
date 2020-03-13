@@ -11,12 +11,13 @@ import { ErrorModel } from '../../config/models/error-model';
   styleUrls: ['./open-account.component.css']
 })
 export class OpenAccountComponent implements OnInit {
+  loading = false;
   accountNbr: any;
   add: any;
   accounts: any;
   put: any;
   response: any;
-   ans: any;
+  ans: any;
   error: any;
   hasError: any;
   isDisabled: boolean;
@@ -36,6 +37,7 @@ export class OpenAccountComponent implements OnInit {
   }
 
   create() {
+    this.loading = true;
     this.isDisabled = false;
     this.accountNbr = Math.floor(Math.random() * 10000000);
     this.accountNbr =  this.accountNbr.toString();
@@ -50,8 +52,10 @@ export class OpenAccountComponent implements OnInit {
      // adding the accounts to the clients
     this.auth.addAcocunt(this.response).subscribe
     ((put) => {
+      this.loading = false;
       this.put = put;
     }, (error) => {
+      this.loading = false;
       this.hasError = true;
       this.error = error;
    });

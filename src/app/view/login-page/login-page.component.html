@@ -1,5 +1,5 @@
-<div class=" m-auto p-5 login">
-  <form>
+<div class=" m-auto p-5 login" >
+  <form style="background-image: 'https://retail.momentum.co.za/images/share-image-default.jpg;'">
     <h2>Login here</h2>
     <br>
     <div class="form-group">
@@ -10,11 +10,14 @@
       <label for="password">Password</label>
       <input type="password" class="form-control"  name="password" [(ngModel)]="password">
     </div>
-    <div class="button">
+    <div class="button mb-5">
       <button type="submit" class="m-auto btn btn-dark" (click)="submit()">Submit</button>
     </div>
   </form>
+  <div *ngIf="loading" class="mx-auto p-4">
+    <h5>please wait .........</h5>
+  </div>
   <div *ngIf="hasError" class="incorrect">
-    <h4>{{ this.error }}!</h4>
+    <h5> password or username is incorrect!</h5>
   </div>
 </div>

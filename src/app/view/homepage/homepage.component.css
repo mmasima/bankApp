@@ -8,3 +8,11 @@ h5{
 .homeColor{
   background-color: silver;
 }
+.hover:hover {
+  color: darkcyan;
+  box-shadow: 0 12px 16px 0 rgba(27, 23, 23, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.no-link
+{
+  text-decoration: none !important;
+}

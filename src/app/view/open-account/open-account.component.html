@@ -5,8 +5,11 @@
     <button type="submit" class="btn btn-dark" (click)=create()>create account</button>
   </div>
 </div>
+<div *ngIf="loading" class="mx-auto p-5 mt-5">
+  <h5>please wait.........</h5>
+</div>
   <div *ngIf="!isDisabled" class="align account-div mx-auto">
-    <h4><strong>new account created successfully!</strong></h4>
+    <h4>new account created successfully!</h4>
     <div *ngIf="put" class="p-1">
       <div class="card p-2 mb-2">
         new account nbr : {{ this.accountNbr }}

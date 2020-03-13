@@ -40,6 +40,6 @@
       <button type="button" class="btn btn-dark" (click)="refresh()">make another deposit</button>
     </div>
   </div>
-  <div class="align" *ngIf="hasError">
-    <h4><strong>there are some fields missing!</strong></h4>
+  <div class="align error" *ngIf="hasError">
+    <h4>there are some fields missing!</h4>
   </div>

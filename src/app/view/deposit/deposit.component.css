@@ -4,6 +4,9 @@
 .corner{
   text-align: left;
 }
+.error{
+  color: darkred;
+}
 .account-div {
   width: 50%;
   margin-top: 2%;

@@ -1,6 +1,9 @@
 .align {
   text-align: center;
 }
+.error{
+  color: darkred;
+}
 .corner{
   text-align: left;
 }.account-div {

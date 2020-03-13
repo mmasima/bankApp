@@ -54,11 +54,13 @@ export class WithdrawComponent implements OnInit {
 
     if (parseFloat(this.withdraw.toString()) > this.data.balance && this.data.balance !== 0) {
       this.withdraw = parseFloat(this.withdraw.toString()) - parseFloat(this.overview.balance);
-      this.data.overdraft = parseFloat(this.withdraw.toString());
+      this.data.overdraft = parseFloat(this.withdraw.toString()) + this.data.overdraft;
       this.data.balance = 0;
     } else if (this.data.balance === 0) {
       this.data.overdraft = parseFloat(this.overview.overdraft) + parseFloat(this.withdraw.toString());
     } else if (this.data.balance > this.data.overdraft) {
+      this.data.balance = this.data.balance - parseFloat(this.withdraw.toString());
+    } else if (this.data.balance > 0) {
       this.data.balance = this.data.balance - parseFloat(this.withdraw.toString());
     }
     this.auth.depositMoney(this.account, this.data.balance, this.data.overdraft)

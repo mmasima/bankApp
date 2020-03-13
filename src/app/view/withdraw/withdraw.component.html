@@ -23,8 +23,6 @@
     </div>
   </div>
 </div>
-
-<div></div>
 <div *ngIf ="!isDisabled" class="p-2 account-div mx-auto">
   <h4 class="align">new balance</h4>
     <div class="card  mb-3 p-3">
@@ -40,6 +38,6 @@
       <button type="button" class="btn btn-dark" (click)="refresh()">make another withdrawal</button>
     </div>
 </div>
-<div class="align" *ngIf="hasError">
-  <h4><strong>There are some fields missing!</strong></h4>
+<div class="align error" *ngIf="hasError">
+  <h4>There are some fields missing!</h4>
 </div>

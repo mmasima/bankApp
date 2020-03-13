@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 <div class="container">
   <div class="card-body account-div mx-auto">
-    <h2>select account</h2>
-      <div class="card-title">
+    <h2 class="header mb-5">select account</h2>
+    <div class="card-title">
         <select class="form-control" [(ngModel)]="account" (change)="displayAccount(account)">
       <option *ngFor="let data of response?.accounts" [value]="data">{{ data }}</option>
       </select>
@@ -10,17 +10,22 @@
     </div>
     <div class="button">
       <button type="button" class="btn btn-dark mb-3" (click)="show()">show details</button>
-      <div *ngIf="overview" class="p-1">
-        <div class="card p-2 mb-2">
-          balance : {{ overview.balance }}
-        </div>
-        <div class="card p-2">
-          overdraft : {{ overview.overdraft }}
-        </div>
-    </div>
+      <div *ngIf="loading" class="mx-auto p-5">
+        <h5>loading......</h5>
+      </div>
+      <div *ngIf="!loading">
+        <div *ngIf="overview" class="p-1">
+          <div class="card p-2 mb-2">
+            balance : {{ overview.balance }}
+          </div>
+          <div class="card p-2">
+            overdraft : {{ overview.overdraft }}
+          </div>
+      </div>
+      </div>
 </div>
-<div *ngIf="hasError" class="p-5 mx-auto">
- <h5><strong>no account selected!</strong></h5>
+<div *ngIf="hasError" class="align">
+ <h5>no account selected!</h5>
 </div>
 </div>
 </div>

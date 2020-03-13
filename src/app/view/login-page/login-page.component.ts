@@ -10,6 +10,7 @@ import { ErrorModel } from '../../config/models/error-model';
 })
 
 export class LoginPageComponent implements OnInit {
+  loading = false;
   email: string;
   password: string;
   response: any;
@@ -26,18 +27,21 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
   }
   submit() {
+    this.loading = true;
     if (this.email === undefined || this.password === undefined) {
+      this.loading = false;
       this.hasError = true;
-      location.reload();
       return;
     }
     this.hasError = false;
     this.service.getToken(this.email, this.password)
     .subscribe((data) => {
       this.please = data;
+      this.loading = false;
     }, (error) => {
-         this.hasError = true;
-         this.error = error.error.error.errors[0].message;
+        this.loading = false;
+        this.hasError = true;
+        this.error = error.error.error.errors[0].message;
       });
   }
 }

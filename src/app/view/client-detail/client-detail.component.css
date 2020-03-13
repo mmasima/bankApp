@@ -1,20 +1,26 @@
 h2{
+  color: aliceblue;
   text-align: center;
 }
 .button{
   text-align: center;
 }
+.align{
+  text-align: center;
+  color: darkred;
+  margin-top: 2em;
+}
 
 .account-div {
   width: 50%;
   margin-top: 5%;
-  margin-bottom: 25%;
+  /* margin-bottom: 25%; */
   min-width: 300px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 90px) {
  .account-div {
     width: 50%;
-    margin-top: 25%;
+    /* margin-top: 25%; */
     margin-bottom: 25%;
     min-width: 300px;
   }

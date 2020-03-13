@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, CanActivate } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,12 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public route: Router) { }
 
   ngOnInit(): void {
   }
   logout() {
     // remove user from local storage to log user out
+    location.reload();
     sessionStorage.clear();
+    this.route.navigate(['']);
   }
 }
